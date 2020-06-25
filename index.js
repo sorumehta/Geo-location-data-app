@@ -1,13 +1,14 @@
 const express = require('express');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
+
 require('dotenv').config();
-console.log(process.env);
 const database = new Datastore('database.db');
 database.loadDatabase();
 
 const app = express();
-app.listen(3000, () => console.log('listening to port 3000'));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`listening to port ${port}`));
 app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}));
 app.post('/api', (request, response) => {
