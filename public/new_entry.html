@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Mood Tracker App</title>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-
 
 </head>
 
@@ -18,86 +16,49 @@
     <input id="mood" value="happy" />
     <button id="submit">Submit Mood</button>
     <script>
-        function setup() {
-            const button = document.getElementById("submit");
-            let lat, lon;
-            button.addEventListener('click', async event => {
-                const mood = document.getElementById("mood").value;
-                const data = {
-                    mood,
-                    lat,
-                    lon
-                };
-                
-                const bearer = 'Bearer ' + window.localStorage.getItem('access_token');
-                const options = {
-                    method: 'POST',
-                    withCredentials: true,
-                    credentials: 'include',
-                    headers: {
-                        'authorization': bearer,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                const res = await fetch('/mood', options);
-                const json = await res.json();
-                console.log(json);
+        const button = document.getElementById("submit");
+        let lat, lon;
+        button.addEventListener('click', async event => {
+            const mood = document.getElementById("mood").value;
+            const data = {
+                mood,
+                lat,
+                lon
+            };
 
+            const bearer = 'Bearer ' + window.localStorage.getItem('access_token');
+            const options = {
+                method: 'POST',
+                withCredentials: true,
+                credentials: 'include',
+                headers: {
+                    'authorization': bearer,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            const res = await fetch('/mood', options);
+            const json = await res.json();
+            console.log(json);
+
+        });
+        if ('geolocation' in navigator) {
+            console.log('Geolocation available');
+            var geo_options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+            navigator.geolocation.getCurrentPosition(async pos => {
+                lat = pos.coords.latitude;
+                lon = pos.coords.longitude;
+                document.getElementById("latitude").textContent = lat;
+                document.getElementById("longitude").textContent = lon;
+            }, err => {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
             });
-            if ('geolocation' in navigator) {
-                console.log('Geolocation available');
-                var geo_options = {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                };
-                navigator.geolocation.getCurrentPosition(async pos => {
-                    lat = pos.coords.latitude;
-                    lon = pos.coords.longitude;
-                    document.getElementById("latitude").textContent = lat;
-                    document.getElementById("longitude").textContent = lon;
-                }, err => {
-                    console.warn(`ERROR(${err.code}): ${err.message}`);
-                });
-            } else {
-                console.log('Geolocation not available');
-            }
-
-            createCanvas(1000, 400);
-        }
-        let red = 0;
-        let green = 0;
-        let blue = 0;
-        let sun = 400;
-
-        function draw() {
-            background(red += 5, green++, blue);
-            //sun
-            //outer
-            noStroke();
-            fill(255, 165, 0, 50);
-            if (sun > 144) {
-                circle(500, sun--, 200);
-            } else if (sun == 144) {
-                circle(500, sun, 200);
-            }
-            //inner
-            noStroke();
-            fill(255, 100, 0, 100);
-            if (sun > 144) {
-                circle(500, sun--, 150);
-            } else if (sun == 144) {
-                circle(500, sun, 150);
-            }
-
-
-            noStroke();
-            fill(150, 75, 0);
-            triangle(0, 400, 250, 200, 500, 400);
-            fill(150, 100, 0);
-            triangle(500, 400, 750, 200, 1000, 400);
-
+        } else {
+            console.log('Geolocation not available');
         }
     </script>
     <p>
