@@ -39,6 +39,9 @@
             const res =  await fetch('/user/signup', options);
             const json = await res.json();
             console.log(json);
+            if (res.status == 201){
+                window.location.replace("/signin.html");
+            }
 
         })
     </script>

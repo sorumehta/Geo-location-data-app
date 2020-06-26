@@ -5,7 +5,10 @@ const check_auth = require('../middlewares/check_auth');
 
 router.post('/', check_auth, (request, response, next) => {
     console.log('I got a request');
-    const data = request.body;
+    const request_data = request.body;
+    const user_data = {user: request.user_data.username};
+    const data = {...user_data, ...request_data};
+    
     const timestamp = Date.now();
     data.timestamp = timestamp;
     mood_db.insert(data);
@@ -16,7 +19,8 @@ router.post('/', check_auth, (request, response, next) => {
 });
 
 router.get('/', check_auth, (request, response, next) => {
-    mood_db.find({}, (err, data) => {
+    
+    mood_db.find({user: request.user_data.username}, (err, data) => {
         if (err){
             response.status(500).json({
                 message: "Error while fetching all data"

@@ -28,9 +28,14 @@
                     lat,
                     lon
                 };
+                
+                const bearer = 'Bearer ' + window.localStorage.getItem('access_token');
                 const options = {
                     method: 'POST',
+                    withCredentials: true,
+                    credentials: 'include',
                     headers: {
+                        'authorization': bearer,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)

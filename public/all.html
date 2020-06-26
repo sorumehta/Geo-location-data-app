@@ -15,8 +15,20 @@
 
     <script>
         async function getAllData() {
-            const response = await fetch('/mood');
+            const bearer = 'Bearer ' + window.localStorage.getItem('access_token');
+            const options = {
+                    method: 'GET',
+                    withCredentials: true,
+                    credentials: 'include',
+                    headers: {
+                        'authorization': bearer,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            
+            const response = await fetch('/mood', options);
             const data = await response.json();
+            console.log("response_data: ",data);
             for (item of data) {
                 const root = document.createElement('div');
                 const mood = document.createElement('div')

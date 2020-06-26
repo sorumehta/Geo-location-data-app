@@ -38,8 +38,13 @@
                 };
             const res =  await fetch('/user/signin', options);
             const json = await res.json();
+            console.log("status: ",res.status)
+            if (res.status === 200){
+                console.log("Status code matched!")
+                window.localStorage.setItem("access_token", json.token);
+                window.location.replace(json.url);
+            }
             
-            window.location.replace(json.url);
         });
     </script>
 </body>
