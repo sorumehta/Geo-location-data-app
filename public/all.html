@@ -15,7 +15,7 @@
 
     <script>
         async function getAllData() {
-            const response = await fetch('/api');
+            const response = await fetch('/mood');
             const data = await response.json();
             for (item of data) {
                 const root = document.createElement('div');

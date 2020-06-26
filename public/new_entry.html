@@ -35,7 +35,7 @@
                     },
                     body: JSON.stringify(data)
                 };
-                const res = await fetch('/api', options);
+                const res = await fetch('/mood', options);
                 const json = await res.json();
                 console.log(json);
 
