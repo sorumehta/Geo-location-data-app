@@ -15,6 +15,8 @@ To run the application, run the following command:
 
 npm start
 
+The app is also deployed on https://mood-tracker-app.herokuapp.com/
+
 
 For any suggestions, reach out to soru.mehta@gmail.com
 Have fun!
