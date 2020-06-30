@@ -1,0 +1,59 @@
+*{
+    --cust-brown: lightsalmon;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+main {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 8fr 0.5fr;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 
+    "header header"
+    "nav article"
+    "footer footer"
+    ;
+}
+
+header{
+    grid-area: header;
+    background:var(--cust-brown, blue);
+    
+}
+
+article{
+    background: lightgreen;
+    grid-area: article;
+}
+
+nav{
+    background: lightseagreen;
+    grid-area: nav;
+    
+}
+
+footer{
+    background: lightslategrey;
+    grid-area: footer;
+}
+
+a{
+    display: block;
+}
+
+.a-link {
+    background: lightpink;
+}
+
+.active-link {
+    background: lightsteelblue;
+    padding:  1em;
+}
+
+.auth-only {
+    display: none;
+}

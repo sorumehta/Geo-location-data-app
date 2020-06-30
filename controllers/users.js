@@ -25,7 +25,8 @@ module.exports.user_signin = (req, res, next) => {
                 });
                 return res.status(200).json({
                     // passing home page url as response data, with token
-                    url: "/new_entry.html", 
+                    //url: "/new_entry.html", 
+                    url: "/mood_index.html",
                     token: token
                 });
             } else {

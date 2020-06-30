@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="app.js" type="module"></script>
+
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Mood Tracker</h1>
+            <cust-crumb>...</cust-crumb>
+            
+        </header>
+        <nav>
+
+            <cust-nav>
+            <div id="authorization">
+                <a href="#Signup">Signup</a>
+                <a href="#Login">Login</a>
+            </div>
+            <div id="main-navigation" class="auth-only">
+                <a href="#Overview">Overview</a>
+                <a href="#Add">Add Mood</a>
+                <a href="#List">List My Moods</a>
+                <a href="#Logout">Logout</a>
+            </div>
+            </cust-nav>
+            
+            
+        </nav>
+        <article>
+            <cust-slot>
+                <header name="header">before</header>
+                <section name="view">view is loaded here</section>
+                <footer name="footer">after</footer>
+            </cust-slot>
+        </article>
+
+        <footer><small>copyright Saurabh Mehta</small></footer>
+    </main>
+
+</body>
+
+</html>

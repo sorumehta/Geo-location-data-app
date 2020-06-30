@@ -7,7 +7,7 @@ const mood_routes = require('./routes/mood')
 require('dotenv').config();
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static('app'));
 app.use(express.json({limit: '1mb'}));
 app.use('/user', user_routes);
 app.use('/mood', mood_routes);

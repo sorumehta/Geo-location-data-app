@@ -9,7 +9,7 @@ module.exports.get_all_moods = (request, response, next) => {
             })
             return;
         }
-        response.json(data);
+        response.status(200).json(data);
     });
 }
 
@@ -22,7 +22,7 @@ module.exports.post_new_mood = (request, response, next) => {
     const timestamp = Date.now();
     data.timestamp = timestamp;
     mood_db.insert(data);
-    response.status(200).json({
+    response.status(201).json({
         message: "Data inserted"
     });
 
