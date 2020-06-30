@@ -1,7 +1,7 @@
 export default class User {
 
     static async signup(username, password) {
-        data = {
+        const data = {
             username,
             password
         }
@@ -16,9 +16,10 @@ export default class User {
         const json = await res.json();
         console.log(json);
         if (res.status == 201) {
-            window.location.replace("/signin.html");
+            console.log("Signed up!");
+            alert("Registration successful")
         } else {
-            alert(json);
+            alert(`Error: ${json.message}`);
         }
         return res.status;
     }
