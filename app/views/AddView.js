@@ -44,7 +44,7 @@ export default class Addview extends HTMLElement {
         const reasonValue = this.reasonInput.value;
         const status = await Mood.add(moodValue, reasonValue);
         if (status===201){
-            console.log("Mood added!");
+            alert("Mood added!");
         }
         else {
             this.root.innerHTML=`<h1>You do not seem to have permissions to add mood</h1>`;
